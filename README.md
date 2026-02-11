@@ -1,16 +1,67 @@
-# React + Vite
+# 💀 Digital Graveyard 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Digital Graveyard is a full-stack MERN application where users can store, manage, and analyze their failed ideas.  
+This repository contains the frontend built with React and deployed on Vercel.
 
-Currently, two official plugins are available:
+🌐 Live Demo: https://digitalgraveyardfrontend.vercel.app/login
+🔗 Backend Repository:https://github.com/VISHAL29OCT/digitalgraveyardbackend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔐 Secure JWT Authentication
+- 🔑 bcrypt Password Hashing (Backend)
+- 🛡 Protected Dashboard Routes
+- 📊 Analytics Dashboard with Pie Chart
+- 📁 Full CRUD Operations (Create, Read, Update, Delete Ideas)
+- 🎨 Cinematic UI with Tailwind CSS
+- 🌍 Deployed on Vercel
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📊 Analytics Features
+
+- Category Distribution Donut Chart
+- Top Failure Reasons
+- Total Ideas Overview
+- Category Breakdown (Tech, Business, Personal)
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- React (Vite)
+- Tailwind CSS
+- Recharts
+- React Router
+- react-hot-toast
+
+### Backend (Separate Repository)
+- Node.js
+- Express.js
+- MongoDB Atlas
+- JWT Authentication
+- bcrypt Password Hashing
+- Render Deployment
+
+---
+
+## 🔐 Authentication Flow
+
+1. User registers with email & password
+2. Password is securely hashed using bcrypt
+3. Login generates a JWT token
+4. Token is stored in localStorage
+5. Protected routes require valid token
+
+---
+
+## ⚙️ Run Locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/VISHAL29OCT/digitalgraveyardfrontend.git
+

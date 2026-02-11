@@ -45,7 +45,7 @@ function AddIdea({ ideas, setIdeas }) {
 
     if (id) {
       // UPDATE
-    res =   await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+    res =   await fetch(`${import.meta.env.VITE_API_URL}/ideas/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

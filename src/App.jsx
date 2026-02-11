@@ -5,6 +5,7 @@ import Register from "./pages/Register.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import AddIdea from "./pages/AddIdea.jsx";
 import Analytics from "./pages/Analytics.jsx";
+import Home from './pages/Home.jsx';
 import { Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast"
 
@@ -23,7 +24,7 @@ function App() {
       <div className='min-h-screen bg-slate-950 text-white'>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={localStorage.getItem("token") ? (

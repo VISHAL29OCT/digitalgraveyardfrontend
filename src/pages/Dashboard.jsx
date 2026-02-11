@@ -7,6 +7,11 @@ function Dashboard({ ideas, setIdeas }) {
 
 useEffect(() => {
   const token = localStorage.getItem("token");
+  
+  if (!token) {
+    navigate("/login");
+    return;
+  }
 
 fetch(`${import.meta.env.VITE_API_URL}/ideas`, {
   headers: {
@@ -33,7 +38,7 @@ fetch(`${import.meta.env.VITE_API_URL}/ideas`, {
     const token = localStorage.getItem("token")
 
 
-  fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+  fetch(`${import.meta.env.VITE_API_URL}/ideas/${id}`, {
     method: "DELETE",
       headers: {
       "Authorization": "Bearer " + token
@@ -51,13 +56,13 @@ function handleLogout() {
 
 
     return (
-      <div className="flex items-center  min-h-screen bg-[url('/bodybg.jpg')] bg-cover bg-center bg-no-repeat">
-        <div className="min-h-screen  text-white p-8">
-            <div  className="flex justify-between gap-190 items-center mb-8">
+      <div className="min-h-screen bg-[url('/bodybg.jpg')] bg-cover bg-center text-white">
+        <div className="max-w-7xl mx-auto p-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
                 <h2 className="text-3xl  font-extrabold text-amber-500"> DIGITAL GRAVE-YARD 💀</h2>
                 <div className="space-x-4">
                     <Link to="/add" className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg">Add Idea</Link> {""}
-                    <Link to="/analytics" className="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg">Analytics</Link> {""}
+                    <Link to="/analytics" className="bg-blue-400 hover:bg-slate-700 px-4 py-2 rounded-lg">Analytics</Link> {""}
                     <button onClick={handleLogout} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg">Logout</button>
                 </div>
             </div>
@@ -65,7 +70,7 @@ function handleLogout() {
           
             {/* {filter section} */}
             <div>
-                <select value={filter} className="bg-slate-50 text-black my-4" onChange={(e) => setFilter(e.target.value)}>
+                <select value={filter} className="bg-teal-700 text-white px-4 py-2 rounded-lg my-4" onChange={(e) => setFilter(e.target.value)}>
                     <option>All</option>
                     <option className=" hover:bg-red-400 ">Tech</option>
                     <option className=" hover:bg-red-400">Business</option>
@@ -80,21 +85,21 @@ function handleLogout() {
   ) : (
     <div className="grid md:grid-cols-3 gap-6">
       {filteredIdeas.map((idea) => (
-        <div key={idea._id} className="bg-slate-900 p-6 rounded-2xl shadow-lg border border-slate-800" >
+        <div key={idea._id} className="bg-gray-600 p-6 rounded-2xl shadow-lg border border-slate-800 hover:scale-105 transition duration-300">
           <h4 className="text-xl font-bold text-purple-400 mb-2 ">
             {idea.title}
           </h4>
 
           <p className="text-slate-300 mb-3">
-            {idea.description}
+           idea : {idea.description}
           </p>
 
-          <p className="text-sm text-slate-400 mb-2">
-            Reason: {idea.reason}
+          <p className="text-sm text-slate-300 mb-2">
+            Reason : {idea.reason}
           </p>
 
-          <span className="inline-block bg-slate-800 px-3 py-1 rounded-full text-sm mb-4">
-            Category: {idea.Category}
+          <span className="inline-block bg-slate-600 px-3 py-1 rounded-b-xl text-shadow-md mb-4">
+            Category : {idea.Category}
           </span>
 
           <div className="flex justify-between">

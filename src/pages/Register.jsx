@@ -44,7 +44,7 @@ if (!res.ok) {
 
 
 return (
-    <div className="flex items-center justify-center min-h-screen bg-[url('/bg.jpeg')] bg-cover bg-center bg-no-repeat">
+    <div className="flex items-center justify-center min-h-screen bg-[url('/bg.jpeg')] bg-cover bg-center bg-no-repeat ">
 
       <div className="bg-slate-900 p-8 rounded-2xl shadow-xl w-96">
 

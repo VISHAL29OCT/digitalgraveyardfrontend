@@ -1,4 +1,13 @@
 import { Link } from "react-router-dom";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from "recharts";
+
 function Analytics({ ideas }) {
   const total = ideas.length;
   const techCount = ideas.filter(i => i.Category === "Tech").length;
@@ -39,12 +48,21 @@ ideas.forEach((idea) => {
 const sortedReasons = Object.entries(reasonCount)
   .sort((a, b) => b[1] - a[1]);
 
+const categoryData = [
+  { name: "Tech", value: techCount },
+  { name: "Business", value: businessCount },
+  { name: "Personal", value: personalCount },
+].filter(item => item.value > 0);
+
+const COLORS = ["#8b5cf6", "#3b82f6", "#f43f5e"];
+
 
   return (
-    
-    <div className="min-h-screen bg-[url('/analytics.jpg')] text-white p-8 ">
+    <div className="relative min-h-screen text-white p-8">
+     <div className="absolute inset-0 bg-[url('/analytics.jpg')] bg-cover bg-center"></div>
+  <div className="absolute inset-0 bg-linear-to-b from-black/70 to-black/90"></div>
 
-
+ <div className="relative z-10">
       <div className="flex justify-between items-center mb-10">
         <h2 className="text-3xl font-bold text-purple-500 " >Analytics</h2>
         <Link to="/dashboard" className="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg">
@@ -54,7 +72,7 @@ const sortedReasons = Object.entries(reasonCount)
 
       <div className="grid md:grid-cols-4 gap-6">
         <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800">
-          <h3 className="text-xl-400">Total Dead Ideas  </h3>
+          <h3 className="text-xl text-slate-400">Total Dead Ideas  </h3>
           <p className="text-3xl font-bold">{total}</p>
         </div>
 
@@ -78,6 +96,7 @@ const sortedReasons = Object.entries(reasonCount)
           <p className="text-3xl font-bold text-blue-400"> {personalCount}</p>
         </div>
       </div>
+
 
 <div className="mt-10">
   <h4 className="text-2xl font-bold text-purple-400 mb-6">
@@ -103,7 +122,50 @@ const sortedReasons = Object.entries(reasonCount)
   )}
 </div>
 
+<div className="mt-16 bg-slate-900 p-8 rounded-2xl border border-slate-800">
+  <h3 className="text-2xl font-bold text-purple-400 mb-6 text-center">
+    Category Distribution 📊
+  </h3>
+
+  {total === 0 ? (
+    <p className="text-center text-slate-400">
+      No data to display.
+    </p>
+  ) : (
+    <div className="w-full h-80">
+      <ResponsiveContainer>
+        <PieChart>
+          <Pie
+            data={categoryData}
+            dataKey="value"
+            nameKey="name"
+            outerRadius={120}
+            innerRadius={60}
+            label
+          >
+            {categoryData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index]} />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend />
+        </PieChart>
+
+        
+      </ResponsiveContainer>
+      {sortedReasons[0] && (
+  <div className="mt-6 text-center text-purple-400 font-semibold">
+    Your biggest failure pattern: {sortedReasons[0][0]} 💡
+  </div>
+)}
+
+    </div>
+  )}
+</div>
+
+
      
+    </div>
     </div>
   )
 }

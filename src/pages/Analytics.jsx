@@ -42,7 +42,7 @@ const sortedReasons = Object.entries(reasonCount)
 
   return (
     
-    <div className="min-h-screen bg-[url('analytics.jpg')] text-white p-8 ">
+    <div className="min-h-screen bg-[url('/analytics.jpg')] text-white p-8 ">
 
 
       <div className="flex justify-between items-center mb-10">

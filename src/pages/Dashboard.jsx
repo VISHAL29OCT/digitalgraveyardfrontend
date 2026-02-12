@@ -60,7 +60,7 @@ function handleLogout() {
         <div className="max-w-7xl mx-auto p-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
                 <h2 className="text-3xl  font-extrabold text-amber-500"> DIGITAL GRAVE-YARD 💀</h2>
-                <div className="space-x-4">
+                <div className="flex flex-wrap gap-3">
                     <Link to="/add" className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg">Add Idea</Link> {""}
                     <Link to="/analytics" className="bg-blue-400 hover:bg-slate-700 px-4 py-2 rounded-lg">Analytics</Link> {""}
                     <button onClick={handleLogout} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg">Logout</button>
@@ -70,11 +70,11 @@ function handleLogout() {
           
             {/* {filter section} */}
             <div>
-                <select value={filter} className="bg-teal-700 text-white px-4 py-2 rounded-lg my-4" onChange={(e) => setFilter(e.target.value)}>
+                <select value={filter} className="bg-teal-800 text-white px-4 py-2 rounded-lg my-4" onChange={(e) => setFilter(e.target.value)}>
                     <option>All</option>
-                    <option className=" hover:bg-red-400 ">Tech</option>
-                    <option className=" hover:bg-red-400">Business</option>
-                    <option className="hover:bg-red-400">Personal</option>
+                    <option className=" bg-teal-600  ">Tech</option>
+                    <option className="bg-teal-700">Business</option>
+                    <option className="bg-teal-500">Personal</option>
                 </select>
             </div>
           

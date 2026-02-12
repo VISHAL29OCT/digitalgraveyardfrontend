@@ -5,9 +5,12 @@ import toast from "react-hot-toast";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Autofill if coming from register page
   useEffect(() => {
     if (location.state) {
       setEmail(location.state.email || "");
@@ -16,6 +19,15 @@ function Login() {
   }, [location]);
 
   async function handleLogin() {
+    if (loading) return;
+
+    if (!email || !password) {
+      toast.error("Please enter email and password");
+      return;
+    }
+
+    setLoading(true);
+
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
         method: "POST",
@@ -25,24 +37,32 @@ function Login() {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
-        toast.error(data.message);
+        const errorData = await res.json();
+        toast.error(errorData.message || "Login failed");
         return;
       }
 
-  
+      const data = await res.json();
+
+      if (!data.token) {
+        toast.error("Token not received");
+        return;
+      }
+
+      // Save token
       localStorage.setItem("token", data.token);
 
       toast.success("Login successful");
 
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1000);
+      // Direct navigation (no timeout)
+      navigate("/dashboard");
 
     } catch (error) {
+      console.error("Login error:", error);
       toast.error("Server error. Try again!");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -71,9 +91,14 @@ function Login() {
 
         <button
           onClick={handleLogin}
-          className="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg text-white font-semibold"
+          disabled={loading}
+          className={`w-full py-2 rounded-lg text-white font-semibold transition ${
+            loading
+              ? "bg-purple-400 cursor-not-allowed"
+              : "bg-purple-600 hover:bg-purple-700"
+          }`}
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </button>
 
         <p className="mt-4 text-center text-gray-300">
@@ -82,6 +107,12 @@ function Login() {
             Register
           </Link>
         </p>
+        <p className="mt-2 text-center">
+  <Link to="/forgot-password" className="text-blue-400 hover:underline text-sm">
+    Forgot Password?
+  </Link>
+</p>
+
       </div>
     </div>
   );

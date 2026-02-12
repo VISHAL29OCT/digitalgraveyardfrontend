@@ -8,6 +8,9 @@ import Analytics from "./pages/Analytics.jsx";
 import Home from './pages/Home.jsx';
 import { Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast"
+import ForgotPassword from './pages/ForgotPassword.jsx';
+import ResetPassword from './pages/ResetPassword.jsx';
+
 
 
 function App() {
@@ -33,6 +36,8 @@ function App() {
               <Navigate to="/login" />
             )}
             />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+<Route path="/reset-password" element={<ResetPassword />} />
 
 
             <Route path="/add" element={localStorage.getItem("token") ? (

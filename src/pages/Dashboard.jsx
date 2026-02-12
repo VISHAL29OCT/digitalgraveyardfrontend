@@ -70,11 +70,11 @@ function handleLogout() {
           
             {/* {filter section} */}
             <div>
-                <select value={filter} className="bg-teal-800 text-white px-4 py-2 rounded-lg my-4" onChange={(e) => setFilter(e.target.value)}>
+                <select value={filter} className="bg-teal-600 text-white px-4 py-2 rounded-lg my-4" onChange={(e) => setFilter(e.target.value)}>
                     <option>All</option>
-                    <option className=" bg-teal-600  ">Tech</option>
-                    <option className="bg-teal-700">Business</option>
-                    <option className="bg-teal-500">Personal</option>
+                    <option >Tech</option>
+                    <option >Business</option>
+                    <option>Personal</option>
                 </select>
             </div>
           
